@@ -1,0 +1,3 @@
+#!/command/execlineb -P
+
+/usr/sbin/sshd -D -e -f /config/etc/ssh/sshd_config

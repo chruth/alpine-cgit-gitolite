@@ -1,0 +1,14 @@
+#!/command/with-contenv bash
+
+# Link ssh config
+[[ ! -f /config/.ssh/config ]] && ln -s /config/.gitolite/ssh/config /config/.ssh/config
+
+# Link gitolite binary
+ln -s /usr/lib/gitolite/gitolite /usr/bin/gitolite
+
+# Fix permissions
+chown -R git:git \
+  /app \
+  /run/uwsgi \
+  /config \
+  /var/cache/cgit

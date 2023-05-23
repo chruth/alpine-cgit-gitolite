@@ -1,0 +1,32 @@
+#!/command/with-contenv bash
+
+# Set HOME env to /config
+export HOME=/config
+
+if [ -z "$SSH_KEY" ]; then
+  # Search for key files
+  FILE_COUNT=$(find /config -maxdepth 1 -type f -name "*.pub" | wc -l)
+
+  if [ "$FILE_COUNT" -eq 0 ]; then
+    echo "No ssh key file found."
+    exit 1
+  elif [ "$FILE_COUNT" -gt 1 ]; then
+    echo "More than one ssh key file found."
+    exit 1
+  else
+    FILE=$(find /config -maxdepth 1 -type f -name "*.pub")
+    echo "Using ssh key file: $FILE"
+    exec s6-setuidgid git /usr/lib/gitolite/gitolite setup -pk "$FILE"
+  fi
+else
+  # Write SSH_KEY to temporary file
+  echo "$SSH_KEY" > /tmp/gitolite.pub
+
+  # Check if the key file is valid
+  ssh-keygen -l -f /tmp/gitolite.pub>/dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    exec s6-setuidgid git /usr/lib/gitolite/gitolite setup -pk /tmp/gitolite.pub
+  else
+    echo "SSH_KEY is not a valid ssh key"
+  fi
+fi

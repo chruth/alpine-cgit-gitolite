@@ -1,0 +1,30 @@
+#!/command/with-contenv bash
+
+# Create directories
+mkdir -p \
+  /app \
+  /run/uwsgi \
+  /config/{repositories,nginx,cgit,logs/{uwsgi,nginx},etc/ssh} \
+  /var/cache/cgit
+
+# Generate ssh host keys
+if [[ ! -f "/config/etc/ssh/ssh_host_rsa_key" || ! -f "/config/etc/ssh/ssh_host_ecdsa_key" || ! -f "/config/etc/ssh/ssh_host_ed25519_key" ]]; then
+  echo "  > Generating SSH host keys"
+  ssh-keygen -A -f "/config"
+fi
+
+# Copy configs
+[[ ! -f /config/cgitrc ]] && eval "echo \"$(</files/cgitrc)\"" > /config/cgitrc
+cp -n /files/nginx.conf /config/nginx/nginx.conf
+cp -n /files/sshd_config /config/etc/ssh/sshd_config
+cp -n /app/cgit.css /config/cgit/cgit.css
+cp -n /app/cgit.png /config/cgit/cgit.png
+cp -n /app/favicon.ico /config/cgit/favicon.ico
+cp -n /files/crontabs /etc/crontabs/git
+
+# Fix permissions
+chown -R git:git \
+  /app \
+  /run/uwsgi \
+  /config \
+  /var/cache/cgit

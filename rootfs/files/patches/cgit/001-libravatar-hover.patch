@@ -1,0 +1,81 @@
+From 0c27ce4aefe14a70a823739d5670604bca9581c4 Mon Sep 17 00:00:00 2001
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Wed, 19 Mar 2014 02:58:41 -0600
+Subject: Steal kernel.org's libravatar lua.
+
+---
+ cgit.css                           | 28 ++++++++++++++++++++++++++++
+ filters/email-libravatar-hover.lua | 25 +++++++++++++++++++++++++
+ 2 files changed, 53 insertions(+)
+ create mode 100644 filters/email-libravatar-hover.lua
+
+diff --git a/cgit.css b/cgit.css
+index 1b848cf..f525ecc 100644
+--- a/cgit.css
++++ b/cgit.css
+@@ -897,3 +897,31 @@ div#cgit table.ssdiff td.space {
+ div#cgit table.ssdiff td.space div {
+ 	min-height: 3em;
+ }
++div#cgit span.libravatar img.onhover {
++        display: none;
++        border: 1px solid gray;
++        padding: 0px;
++        -webkit-border-radius: 4px;
++        -moz-border-radius: 4px;
++        border-radius: 4px;
++        width: 128px;
++        height: 128px;
++}
++
++div#cgit span.libravatar img.inline {
++        -webkit-border-radius: 3px;
++        -moz-border-radius: 3px;
++        border-radius: 3px;
++        width: 13px;
++        height: 13px;
++        margin-right: 0.2em;
++        opacity: 0.6;
++}
++
++div#cgit span.libravatar:hover > img.onhover {
++        display: block;
++        position: absolute;
++        margin-left: 1.5em;
++        background-color: #eeeeee;
++        box-shadow: 2px 2px 7px rgba(100,100,100,0.75);
++}
+diff --git a/filters/email-libravatar-hover.lua b/filters/email-libravatar-hover.lua
+new file mode 100644
+index 0000000..c14b618
+--- /dev/null
++++ b/filters/email-libravatar-hover.lua
+@@ -0,0 +1,25 @@
++local digest = require("openssl.digest")
++
++function md5_hex(input)
++	local b = digest.new("md5"):final(input)
++	local x = ""
++	for i = 1, #b do
++		x = x .. string.format("%.2x", string.byte(b, i))
++	end
++	return x
++end
++
++function filter_open(email, page)
++	buffer = ""
++	hexdigest = md5_hex(email:sub(2, -2):lower())
++end
++
++function filter_close()
++	baseurl = os.getenv("HTTPS") and "https://seccdn.libravatar.org/" or "http://cdn.libravatar.org/"
++	html("<span class='libravatar'><img class='inline' src='" .. baseurl .. "avatar/" .. hexdigest .. "?s=13&amp;d=retro' /><img class='onhover' src='" .. baseurl .. "avatar/" .. hexdigest .. "?s=128&amp;d=retro' /></span>" .. buffer)
++	return 0
++end
++
++function filter_write(str)
++	buffer = buffer .. str
++end
+-- 
+cgit v1.2.3-59-g8ed1b
+

@@ -1,0 +1,123 @@
+# Allow cgit to use git config to set any repo specific settings
+enable-git-config=${CGIT_CONF_GIT_CONFIG:-1}
+
+# Show owner on index page
+enable-index-owner=${CGIT_CONF_INDEX_OWNER:-1}
+
+# Using server timezone for commits,tags and idle time
+local-time=${CGIT_CONF_LOCAL_TIME:-1}
+
+# Specify some default clone urls using macro expansion
+#clone-url=ssh://git@EXAMPLE.com/$CGIT_REPO_URL https://git.EXAMPLE.COM/$CGIT_REPO_URL
+clone-url=${CGIT_CONF_CLONE_URL:-}
+
+# Allow http transport git clone
+enable-http-clone=${CGIT_CONF_HTTP_CLONE:-0}
+
+# Show extra links for each repository on the index page
+enable-index-links=${CGIT_CONF_INDEX_LINKS:-1}
+
+# Enable blame page and create links to it from tree page
+enable-blame=${CGIT_CONF_BLAME:-1}
+
+# Enable ASCII art commit history graph on the log pages
+enable-commit-graph=${CGIT_CONF_COMMIT_GRAPH:-1}
+
+# Show number of affected files per commit on the log pages
+enable-log-filecount=${CGIT_CONF_LOG_FILECOUNT:-1}
+
+# Show number of added/removed lines per commit on the log pages
+enable-log-linecount=${CGIT_CONF_LOG_LINECOUNT:-1}
+
+# Sort branches by date
+branch-sort=${CGIT_CONF_BRANCH_SORT:-"age"}
+
+# Sort repositories by date
+repository-sort=${CGIT_CONF_REPOSITORY_SORT:-"age"}
+
+# Enable caching of up to 1000 output entries
+cache-size=${CGIT_CONF_CACHE_SIZE:-0}
+
+# Allow download of tar.xz and zip-files
+snapshots=${CGIT_CONF_SNAPSHOTS:-"tar.xz zip"}
+
+# Enable statistics per week, month and quarter
+max-stats=${CGIT_CONF_MAX_STATS:-"quarter"}
+
+# Set the title and heading of the repository index page
+root-title=${CGIT_CONF_ROOT_TITLE:-"Git repository browser"}
+
+# Set a subheading for the repository index page
+root-desc=${CGIT_CONF_ROOT_DESC:-"a fast webinterface for the git dscm"}
+
+# Set footer text
+footer=${CGIT_CONF_FOOTER:-""}
+
+# Add a cgit favicon
+favicon=${CGIT_CONF_FAVICON:-"/favicon.ico"}
+
+# Use a custom logo
+logo=${CGIT_CONF_LOGO:-"/cgit.png"}
+
+# Specify the css url
+css=${CGIT_CONF_CSS:-"/cgit.css"}
+
+# if you do not want that webcrawler (like google) index your site
+robots=${CGIT_CONF_ROBOTS:-"noindex, nofollow"}
+
+# if cgit messes up links, use a virtual-root.4
+virtual-root=${CGIT_CONF_VIRTUAL_ROOT:-"/"}
+
+# if any repositories are found with a suffix of ".git", this suffix will be removed for the url and name.
+remove-suffix=${CGIT_CONF_REMOVE_SUFFIX:-1}
+
+# Highlight source code with python pygments-based highlighter
+source-filter=/usr/lib/cgit/filters/syntax-highlighting.py
+
+# Format markdown, restructuredtext, manpages, text files, and html files
+# through the right converters
+about-filter=/usr/lib/cgit/filters/about-formatting.sh
+
+# gravatar email filter
+email-filter=/usr/lib/cgit/filters/email-gravatar.py
+
+mimetype.gif=image/gif
+mimetype.html=text/html
+mimetype.jpg=image/jpeg
+mimetype.jpeg=image/jpeg
+mimetype.pdf=application/pdf
+mimetype.png=image/png
+mimetype.svg=image/svg+xml
+
+readme=:README.md
+readme=:readme.md
+readme=:README.mkd
+readme=:readme.mkd
+readme=:README.rst
+readme=:readme.rst
+readme=:README.html
+readme=:readme.html
+readme=:README.htm
+readme=:readme.htm
+readme=:README.txt
+readme=:readme.txt
+readme=:README
+readme=:readme
+readme=:INSTALL.md
+readme=:install.md
+readme=:INSTALL.mkd
+readme=:install.mkd
+readme=:INSTALL.rst
+readme=:install.rst
+readme=:INSTALL.html
+readme=:install.html
+readme=:INSTALL.htm
+readme=:install.htm
+readme=:INSTALL.txt
+readme=:install.txt
+readme=:INSTALL
+readme=:install
+
+# Show only repos listed in project-list
+project-list=/config/projects.list
+scan-path=/config/repositories

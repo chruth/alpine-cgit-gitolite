@@ -1,0 +1,13 @@
+#!/command/with-contenv bash
+
+echo "
+-------------------------------------
+-------------------------------------
+User uid:    $(id -u git)
+User gid:    $(id -g git)
+Timezone:    "${TZ}"
+CONFIG_DIR:  "${CONFIG_DIR}"
+APP_DIR:     "${APP_DIR}"
+-------------------------------------
+-------------------------------------
+"

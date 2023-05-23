@@ -1,0 +1,13 @@
+#!/command/with-contenv bash
+
+# Change username and group name
+usermod -l "git" "yaapc"
+groupmod -n "git" "yaapc"
+
+# Change PUID and PGID
+groupmod -o -g "${PGID}" "git"
+usermod -o -u "${PUID}" "git"
+
+# Enable shell and unlock git user
+usermod --shell /usr/lib/gitolite/gitolite-shell "git"
+usermod -p "*" "git"

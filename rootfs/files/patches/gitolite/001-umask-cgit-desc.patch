@@ -1,0 +1,22 @@
+diff --git a/src/lib/Gitolite/Rc.pm b/src/lib/Gitolite/Rc.pm
+index 41996fb..302e28c 100644
+--- a/src/lib/Gitolite/Rc.pm
++++ b/src/lib/Gitolite/Rc.pm
+@@ -504,7 +504,7 @@ __DATA__
+ 
+     # default umask gives you perms of '0700'; see the rc file docs for
+     # how/why you might change this
+-    UMASK                           =>  0077,
++    UMASK                           =>  0027,
+ 
+     # look for "git-config" in the documentation
+     GIT_CONFIG_KEYS                 =>  '',
+@@ -646,7 +646,7 @@ __DATA__
+             # 'upstream',
+ 
+             # updates 'description' file instead of 'gitweb.description' config item
+-            # 'cgit',
++            'cgit',
+ 
+             # allow repo-specific hooks to be added
+             # 'repo-specific-hooks',
