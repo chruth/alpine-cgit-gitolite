@@ -31,6 +31,7 @@ RUN \
     uwsgi-cgi \
     git-daemon \
     lua5.4 \
+    lua5.4-ossl \
     nginx \
     py3-markdown \
     py3-pygments \

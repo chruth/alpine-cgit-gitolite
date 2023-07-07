@@ -78,8 +78,8 @@ source-filter=/usr/lib/cgit/filters/syntax-highlighting.py
 # through the right converters
 about-filter=/usr/lib/cgit/filters/about-formatting.sh
 
-# gravatar email filter
-email-filter=/usr/lib/cgit/filters/email-gravatar.py
+# libravatar hover email filter
+email-filter=lua:/usr/lib/cgit/filters/email-libravatar-hover.lua
 
 mimetype.gif=image/gif
 mimetype.html=text/html
