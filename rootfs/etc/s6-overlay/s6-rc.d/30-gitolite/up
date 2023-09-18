@@ -1,1 +1,1 @@
-/etc/s6-overlay/scripts/30-gitolite
+/etc/s6-overlay/s6-rc.d/30-gitolite/run

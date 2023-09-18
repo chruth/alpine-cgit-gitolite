@@ -1,1 +1,1 @@
-/etc/s6-overlay/scripts/40-finish
+/etc/s6-overlay/s6-rc.d/40-finish/run

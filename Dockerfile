@@ -39,6 +39,7 @@ RUN \
     tar \
     xz \
     perl \
+    findutils \
     openssh && \
   # build cgit
   git clone --branch ch/for-jason https://git.zx2c4.com/cgit /tmp/cgit && cd /tmp/cgit && \
@@ -51,8 +52,6 @@ RUN \
   git apply --unsafe-paths --directory /tmp/gitolite /files/patches/gitolite/*.patch && \
   mkdir -p /usr/lib/gitolite && \
   /tmp/gitolite/install -to /usr/lib/gitolite/ && \
-  # make scripts executable
-  chmod +x /etc/s6-overlay/scripts/* && \
   # cleanup
   apk del --purge build-dependencies && \
   rm -rf /tmp/*

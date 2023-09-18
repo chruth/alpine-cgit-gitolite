@@ -1,1 +1,1 @@
-/etc/s6-overlay/scripts/20-config
+/etc/s6-overlay/s6-rc.d/20-config/run

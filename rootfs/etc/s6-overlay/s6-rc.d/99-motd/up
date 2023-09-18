@@ -1,1 +1,1 @@
-/etc/s6-overlay/scripts/99-motd
+/etc/s6-overlay/s6-rc.d/99-motd/run
