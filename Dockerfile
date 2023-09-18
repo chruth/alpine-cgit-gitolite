@@ -9,7 +9,9 @@ ARG \
     NO_REGEX=NeedsStartEnd \
     NO_SVN_TESTS=YesPlease \
     NO_TCLTK=YesPlease \
-    prefix=/usr"
+    prefix=/usr \
+    CGIT_DATA_PATH=/app \
+    CGIT_CONFIG=/config/cgitrc"
 
 COPY rootfs /
 
@@ -46,7 +48,7 @@ RUN \
   git submodule init && git submodule update && \
   git apply --unsafe-paths --directory /tmp/cgit /files/patches/cgit/*.patch && \
   make all ${MAKEOPTS} && \
-  make install ${MAKEOPTS} CGIT_SCRIPT_PATH=/app CGIT_CONFIG=/config/cgitrc && \
+  make install ${MAKEOPTS} && \
   # install gitolite
   git clone https://github.com/sitaramc/gitolite /tmp/gitolite && \
   git apply --unsafe-paths --directory /tmp/gitolite /files/patches/gitolite/*.patch && \
