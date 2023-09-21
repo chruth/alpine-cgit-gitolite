@@ -1,0 +1,7 @@
+if { mkdir -p /config/log/uwsgi-cgit }
+if { mkdir -p /config/log/uwsgi-git }
+if { mkdir -p /config/log/nginx }
+if { mkdir -p /config/log/cron }
+if { mkdir -p /config/log/openssh }
+if { chown -R nobody:nogroup /config/log/ }
+chmod -R 02755 /config/log/

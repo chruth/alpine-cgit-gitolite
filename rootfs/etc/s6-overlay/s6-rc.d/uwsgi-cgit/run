@@ -1,10 +1,9 @@
-#!/command/execlineb -P
-
-/usr/sbin/uwsgi \
+#!/bin/sh
+exec 2>&1
+exec /usr/sbin/uwsgi \
   --uid git --gid git \
   --master --die-on-term --listen 256 \
   --processes 1 --threads 2 \
-  --logto /config/logs/uwsgi/cgit.log \
   --plugin cgi --cgi /var/www/htdocs/cgit/cgit.cgi \
   --procname-master "uwsgi cgit" \
   --hook-master-start "unix_signal:1 gracefully_kill_them_all" \

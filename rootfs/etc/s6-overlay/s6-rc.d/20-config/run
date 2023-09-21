@@ -4,7 +4,7 @@
 mkdir -p \
   /app \
   /run/uwsgi \
-  /config/{repositories,nginx,cgit,logs/{uwsgi,nginx},etc/ssh} \
+  /config/{repositories,cgit,etc/ssh} \
   /var/cache/cgit
 
 # Generate ssh host keys
@@ -15,7 +15,7 @@ fi
 
 # Copy configs
 [[ ! -f /config/cgitrc ]] && eval "echo \"$(</files/cgitrc)\"" > /config/cgitrc
-cp -n /files/nginx.conf /config/nginx/nginx.conf
+cp /files/nginx.conf /etc/nginx/nginx.conf
 cp -n /files/sshd_config /config/etc/ssh/sshd_config
 cp -n /app/cgit.css /config/cgit/cgit.css
 cp -n /app/cgit.png /config/cgit/cgit.png
