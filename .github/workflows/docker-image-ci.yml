@@ -50,6 +50,7 @@ jobs:
           platforms: ${{ env.platform }}
           build-args: ${{ env.build-args }}
           push: true
+          provenance: false
           tags: ${{ github.repository }}:${{ env.tag }}
 
   publish:
